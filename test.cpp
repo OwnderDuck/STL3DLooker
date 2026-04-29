@@ -1,0 +1,31 @@
+#include<gtest/gtest.h>
+#include"math.hpp"
+#include"readSTL.hpp"
+
+TEST(MathTest,VectorAddition){
+    Vector3 a{1.0f,2.0f,3.0f};
+    Vector3 b{4.0f,5.0f,6.0f};
+    Vector3 c=a+b;
+
+    EXPECT_FLOAT_EQ(c.x,5.0f);
+    EXPECT_FLOAT_EQ(c.y,7.0f);
+    EXPECT_FLOAT_EQ(c.z,9.0f);
+}
+
+TEST(MathTest,MatrixIdentity){
+        Matrix4 id=Matrix4::identity();
+        Vector3 p{10.0f,20.0f,30.0f};
+        Vector3 res=id.transform(p);
+        EXPECT_FLOAT_EQ(res.x,10.0f);
+        EXPECT_FLOAT_EQ(res.y,20.0f);
+        EXPECT_FLOAT_EQ(res.z,30.0f);
+}
+
+TEST(MathTest,CrossProduct){
+    Vector3 a{1,0,0};
+    Vector3 b{0,1,0};
+    Vector3 c=a.cross(b);
+    EXPECT_FLOAT_EQ(c.x,0.0f);
+    EXPECT_FLOAT_EQ(c.y,0.0f);
+    EXPECT_FLOAT_EQ(c.z,1.0f);
+}

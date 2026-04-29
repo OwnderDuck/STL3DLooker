@@ -16,7 +16,7 @@ struct Triangle {
 };
 class STLReader {
 public:
-    static std::vector<STLTriangle> readBinSTL(const std::string path) {
+    static std::vector<Triangle> readBinSTL(const std::string path) {
         std::ifstream file(path,std::ios::binary);
         if (!file) {
             std::cerr<<"FATAL: Cannot open "<<path<<std::endl;

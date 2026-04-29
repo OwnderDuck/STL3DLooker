@@ -6,3 +6,21 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(STL3DLooker main.cpp
         math.hpp readSTL.hpp)
 target_include_directories(STL3DLooker PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+option(BUILD_TESTING "Build the testing suite" ON)
+
+if(BUILD_TESTING)
+    include(FetchContent)
+    FetchContent_Declare(
+            googletest
+            URL https://github.com/google/googletest/archive/refs/heads/main.zip
+    )
+    FetchContent_MakeAvailable(googletest)
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    enable_testing()
+    add_executable(unit_tests test.cpp)
+    target_link_libraries(unit_tests GTest::gtest_main)
+    target_include_directories(unit_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+    add_test(NAME AllMathTests COMMAND unit_tests)
+endif()
