@@ -1,20 +1,19 @@
 #ifndef MATH_HPP
 #define MATH_HPP
 #include <cmath>
-#include <math.h>
 
 struct Vector3 {
     float x,y,z;
     Vector3 operator + (const Vector3& o) const {return {x+o.x,y+o.y,z+o.z};}
     Vector3 operator - (const Vector3& o) const {return {x-o.x,y-o.y,z-o.z};}
-    Vector3 cross(const Vector3& o) const {return {
+    [[nodiscard]] Vector3 cross(const Vector3& o) const {return {
         y*o.z-z*o.y,
         z*o.x-x*o.z,
         x*o.y-y*o.x};
     }
-    float dot(const Vector3& o) const {return o.x*o.x+o.y*o.y+o.z*o.z;}
-    float length() const {return sqrt(dot(*this));}
-    Vector3 normalize() {
+    [[nodiscard]] float dot(const Vector3& o) const {return x*o.x+y*o.y+z*o.z;}
+    [[nodiscard]] float length() const {return std::sqrt(dot(*this));}
+    [[nodiscard]] Vector3 normalize() const {
         float l=length();
         if (l>0) return {x/l,y/l,z/l};
         else return {0,0,0};
