@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "math.hpp"
+#pragma pack(push, 1)
 struct Triangle {
     Vector3 normal;
     Vector3 v1;
@@ -14,6 +15,7 @@ struct Triangle {
     Vector3 v3;
     uint16_t attr;
 };
+#pragma pack(pop)
 class STLReader {
 public:
     static std::vector<Triangle> readBinSTL(const std::string path) {
@@ -28,7 +30,7 @@ public:
         file.read((char*)&triangleCnt,sizeof(uint32_t));
         // new vector
         std::vector<Triangle> triangles;
-        triangles.reserve(triangleCnt);
+        triangles.resize(triangleCnt);
         // read each triangle, 50 bytes per triangle
         for (uint32_t i=0;i<triangleCnt;i++) {
             file.read((char*)&triangles[i],sizeof(Triangle));

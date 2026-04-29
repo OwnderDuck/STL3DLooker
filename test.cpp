@@ -15,10 +15,10 @@ TEST(MathTest,VectorAddition){
 TEST(MathTest,MatrixIdentity){
         Matrix4 id=Matrix4::identity();
         Vector3 p{10.0f,20.0f,30.0f};
-        Vector3 res=id.transform(p);
-        EXPECT_FLOAT_EQ(res.x,10.0f);
-        EXPECT_FLOAT_EQ(res.y,20.0f);
-        EXPECT_FLOAT_EQ(res.z,30.0f);
+        Vector3 ans=id.transform(p);
+        EXPECT_FLOAT_EQ(ans.x,10.0f);
+        EXPECT_FLOAT_EQ(ans.y,20.0f);
+        EXPECT_FLOAT_EQ(ans.z,30.0f);
 }
 
 TEST(MathTest,CrossProduct){

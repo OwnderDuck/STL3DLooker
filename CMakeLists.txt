@@ -3,6 +3,9 @@ project(STL3DLooker)
 
 set(CMAKE_CXX_STANDARD 20)
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cube.stl
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 add_executable(STL3DLooker main.cpp
         math.hpp readSTL.hpp)
 target_include_directories(STL3DLooker PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})

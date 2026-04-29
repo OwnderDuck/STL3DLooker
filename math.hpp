@@ -29,7 +29,7 @@ struct Matrix4 {
         _m[0][0]=1;_m[0][1]=0;_m[0][2]=0;_m[0][3]=0;
         _m[1][0]=0;_m[1][1]=1;_m[1][2]=0;_m[1][3]=0;
         _m[2][0]=0;_m[2][1]=0;_m[2][2]=1;_m[2][3]=0;
-        _m[3][0]=0;_m[3][1]=0;_m[3][2]=1;_m[3][3]=1;
+        _m[3][0]=0;_m[3][1]=0;_m[3][2]=0;_m[3][3]=1;
         return _m;
     }
     Matrix4 operator*(const Matrix4& o) {
@@ -39,7 +39,7 @@ struct Matrix4 {
         }}}
         return ans;
     }
-    Vector3 transform(const Vector3 o) const {
+    [[nodiscard]] Vector3 transform(const Vector3 o) const {
         float x=o.x*m[0][0]+o.y*m[0][1]+o.z*m[0][2]+m[0][3];
         float y=o.x*m[1][0]+o.y*m[1][1]+o.z*m[1][2]+m[1][3];
         float z=o.x*m[2][0]+o.y*m[2][1]+o.z*m[2][2]+m[2][3];
