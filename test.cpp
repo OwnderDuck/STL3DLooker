@@ -1,6 +1,7 @@
-#include<gtest/gtest.h>
-#include"math.hpp"
-#include"readSTL.hpp"
+#include <gtest/gtest.h>
+#include "math.hpp"
+#include "readSTL.hpp"
+#include "canvas.hpp"
 
 TEST(MathTest,VectorAddition){
     Vector3 a{1.0f,2.0f,3.0f};
@@ -28,4 +29,18 @@ TEST(MathTest,CrossProduct){
     EXPECT_FLOAT_EQ(c.x,0.0f);
     EXPECT_FLOAT_EQ(c.y,0.0f);
     EXPECT_FLOAT_EQ(c.z,1.0f);
+}
+TEST(CanvasTest, SaveFileExists) {
+    Canvas canvas(100, 100);
+    canvas.clear(0x0000FF);
+    for(int i=0; i<100; i++) {
+        canvas.drawPixel(i, i, 0xFFFF00);
+    }
+    std::string filename = "testOutput.ppm";
+    canvas.saveAsPPM(filename);
+    std::ifstream f(filename);
+    f.close();
+    int ret=system("cmp -s testOutput.ppm rightTestOutput.ppm");
+    EXPECT_EQ(WEXITSTATUS(ret), 0)<<"diff!!!return:"<<ret;
+    //std::remove(filename.c_str());
 }
