@@ -33,6 +33,7 @@ public:
         for (uint32_t i=0;i<triangleCnt;i++) {
             file.read((char*)&triangles[i],sizeof(Triangle));
         }
+        return triangles;
     }
 };
 #endif //READSTL_HPP
