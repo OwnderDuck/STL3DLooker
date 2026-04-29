@@ -7,7 +7,8 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/cube.stl
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(STL3DLooker main.cpp
-        math.hpp readSTL.hpp)
+        math.hpp readSTL.hpp
+        canvas.cpp)
 target_include_directories(STL3DLooker PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 option(BUILD_TESTING "Build the testing suite" ON)
