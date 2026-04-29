@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "math.hpp"
-struct STLTriangle {
+struct Triangle {
     Vector3 normal;
     Vector3 v1;
     Vector3 v2;
@@ -27,13 +27,11 @@ public:
         uint32_t triangleCnt;
         file.read((char*)&triangleCnt,sizeof(uint32_t));
         // new vector
-        std::vector<STLTriangle> triangles;
+        std::vector<Triangle> triangles;
         triangles.reserve(triangleCnt);
         // read each triangle, 50 bytes per triangle
-        STLTriangle t{};
         for (uint32_t i=0;i<triangleCnt;i++) {
-            file.read((char*)&t,sizeof(STLTriangle));
-
+            file.read((char*)&triangles[i],sizeof(Triangle));
         }
     }
 };
