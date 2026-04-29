@@ -9,10 +9,10 @@
 #include "math.hpp"
 #pragma pack(push, 1)
 struct Triangle {
-    Vector3 normal;
-    Vector3 v1;
-    Vector3 v2;
-    Vector3 v3;
+    V3 normal;
+    V3 v1;
+    V3 v2;
+    V3 v3;
     uint16_t attr;
 };
 #pragma pack(pop)
